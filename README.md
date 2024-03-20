@@ -1,19 +1,10 @@
 The Game Rock, Paper, Scissors
 
+This project is the first "major" thing I have built in JavaScript.
 
-getComputerChoice --> randomly return either Rock, Paper, Scissors
-
-playerSelection --> player choice from the list (case-insensitive)
-
-computerSelection --> pc choice from the list
-
-playRound --> play single round 
-
-playRound --> play five rounds against pc non stop
-
-First function is to get the PC input.
-Second I get the player input.
-
-Third Im tring to get the function to call the other two each time you play.
-Then compare those selections using the 'switch' function.
-Comparing the results and console.loging the message of Win, Loss, and Tie.
+Using the Math.random method I cycled through the list of options for the computer choice.
+Then prompt for getting the player choice.
+The playRound section took me the longest to figure out (I tried 'switch' method, till i relized it was used for one value not two).
+Once I got the game round done all I had to do was loop through it five times.
+Each loop through (using the returned value) use a if statement to see who gets the point
+At the end print the winner based opon the score. (Like the casino's, the house wins so ties go to the computer).
