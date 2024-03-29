@@ -1,53 +1,65 @@
-let choiceArr = ["rock", "paper", "scissor"];
-// getComputerChoice --> randomly pick from list for the pc
-let computerSelection;
-function getComputerChoice(computerSelection) {
+const display = document.querySelector('#display');
+const finalMessage = document.createElement('h1');
+    // Scores for both
+    let playerScore = 0;
+    let computerScore = 0;
+// Upon clicking of one of  the buttons the game starts
+function playGame(event) {
+    // This gets the value of the button pressed then displays it
+    let playerSelection = event.target.value;
+    const playerChoice = document.createElement('h3');
+    playerChoice.textContent = 'Player has selected ' + playerSelection;
+    display.appendChild(playerChoice);
+    
+    // This is getting the random computer choice and displaying it
+    let computerSelection = getComputerChoice();
+    const computerChoice = document.createElement('h3');
+    computerChoice.textContent = 'Computer has selected ' + computerSelection;
+    display.appendChild(computerChoice);
+    
+    // Compare the selection and choice the winner, update score
+    const displayWinner = document.createElement('h3');
+    const displayScore = document.createElement('h3');
+    if (playerSelection === computerSelection) {
+        displayWinner.textContent = 'Round tie';
+        display.appendChild(displayWinner);
+        // Displays the score after the winner
+        displayScore.textContent = 'Player: ' + playerScore + ' Computer: ' + computerScore;
+        displayWinner.appendChild(displayScore);
+    } else if (
+        (playerSelection === 'Rock' && computerSelection === 'Scissor') ||
+        (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+        (playerSelection === 'Scissor' && computerSelection === 'Paper')
+    ) {
+        playerScore ++;
+        displayWinner.textContent = "Round won";
+        display.appendChild(displayWinner);
+        // Displays the score after the winner
+        displayScore.textContent = 'Player: ' + playerScore + ' Computer: ' + computerScore;
+        displayWinner.appendChild(displayScore);
+    } else {
+        computerScore ++;
+        displayWinner.textContent = 'Round lost';
+        display.appendChild(displayWinner);
+        // Displays the score after the winner
+        displayScore.textContent = 'Player: ' + playerScore + ' Computer: ' + computerScore;
+        displayWinner.appendChild(displayScore);
+    }
+    if (playerScore === 5) {
+        finalMessage.textContent = "You are the Winner!!";
+        display.appendChild(finalMessage);
+    } else if (computerScore === 5) {
+        finalMessage.textContent = "You are the Loser!!";
+        display.appendChild(finalMessage);
+    } else {
+        
+    }
+
+}
+// Function to get the random computer choice
+let choiceArr = ["Rock", "Paper", "Scissor"];
+function getComputerChoice() {
     let i = Math.floor(Math.random() * 3);
-     computerSelection = choiceArr[i];
-        // console.log(computerSelection);
-    return computerSelection.toLowerCase();
-}
-
-
-// Get the input from the player (prompt)
-let playerSelection;
-function getPlayerChoice(playerSelection) {
-    playerSelection = prompt("Rock, Paper, Scissor: ");
-    return playerSelection.toLowerCase();
-}
-
-
-// Compare the choice from player to pc to find winner
-function playRound() {
-    let cc = getComputerChoice();
-    let pc = getPlayerChoice();
-    console.log(pc, cc);
-    if (pc === 'rock' && cc === 'rock'){
-        console.log('Its a tie!');
-    } else if (pc === 'paper' && cc === 'rock'){
-        console.log('Paper beats rock. You win!!');
-    } else if (pc === 'scissor' && cc === 'rock'){
-        console.log('Rock beats scissors. You loss!!');
-    } else if (pc === 'rock' && cc === 'paper'){
-        console.log('Paper beats rock. You loss!!');
-    } else if (pc === 'paper' && cc === 'paper'){
-        console.log('Its a tie!!');
-    } else if (pc === 'scissor' && cc === 'paper'){
-        console.log('Scissor beats paper. You win!!');
-    } else if (pc === 'rock' && cc === 'scissor'){
-        console.log('Rock beats scissor. You win!!');
-    } else if (pc === 'paper' && cc === 'scissor'){
-        console.log('Scissor beats paper. You loss!!');
-    } else if (pc === 'scissor' && cc === 'scissor'){
-        console.log('Its a tie!!');
-    }
-}
-
-// playRound();
-
-// Call playRound 5 times and keep score of who wins
-function playGame() {
-    for (i = 0; i < 5; i++){
-        let round = playRound();
-    }
-}
+    computerSelection = choiceArr[i];
+    return computerSelection;
+};
